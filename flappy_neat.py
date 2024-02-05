@@ -98,10 +98,12 @@ class Bird(arcade.Sprite):
 
     def update(self):
         if len(self.pipe_list):
+            next_pipe = self.pipe_list[0] if self.pipe_list[0].right > self.center_x else self.pipe_list[2]
+
             output = self.net.activate(
                 (
                     self.center_y,
-                    self.pipe_list[0].left, self.pipe_list[0].bottom,
+                    next_pipe.left, next_pipe.bottom,
                 )
             )
             self.genome.fitness += 0.1
